@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
-class Categroy(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     meta_desc = models.TextField(blank=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True, allow_unicode=True)
@@ -20,7 +20,7 @@ class Categroy(models.Model):
 
     
 class Product(models.Model):
-    category = models.ForeignKey(Categroy, on_delete=models.SET_NULL, null=True, related_name='products')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True, allow_unicode=True)
     image = models.ImageField(upload_to ='products/%d/%m/%Y', blank=True)

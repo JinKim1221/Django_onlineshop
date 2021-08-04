@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,16 +78,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 pymysql.version_info =(1,4, 2, "final", 0)
-pymysql.install_as_MySQLdb()
+
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST' : 'onlineshop.cuweobpea1cj.eu-west-1.rds.amazonaws.com',
+        'HOST' : 'onlineshop.crmhth2zlvjz.eu-west-1.rds.amazonaws.com',
         'NAME': 'onlineshop',
-        'USER' : 'admin',
+        'USER' : '',
         'PASSWORD' : '',
- 
         'PORT' : '3306',
     }
 }
