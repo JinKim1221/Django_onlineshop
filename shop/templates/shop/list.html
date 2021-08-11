@@ -23,7 +23,9 @@
                 {% for product in products %}
                     <div class="col-4">
                         <div class="card">
+                            {% if product.image %}
                             <img class="cart-img-top" src="{{product.image.url}}" alt="Product image">
+                            {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title"> {{product.name}} </h5>
                                 <p class="card-text"> {{product.desc}} 
@@ -31,7 +33,7 @@
                                         {{product.price}} EURO
                                     </span>
                                 </p>
-                                <a href="{{product.get_absolute_url}}" calss="btn btn-primary"></a>
+                                <a href="{{product.get_absolute_url}}" calss="btn btn-primary"> View Detail </a>
                             </div>
                         </div>
                     </div>
