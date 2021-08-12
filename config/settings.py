@@ -42,11 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'django.contrib.sites',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.google',
+    # google oauth reference 
+    # https://dev.to/mdrhmn/django-google-authentication-using-django-allauth-18f8
 ]
 
 MIDDLEWARE = [
@@ -147,5 +149,5 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-
 LOGIN_REDIRECT_URL = '/'
+
