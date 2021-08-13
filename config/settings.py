@@ -151,3 +151,20 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
+AWS_ACCESS_KEY_ID = '--'
+AWS_SECRET_ACCESS_KEY = '--'
+
+AWS_REGION = 'EU (Ireland) eu-west-1'
+AWS_STORAGE_BUCKET_NAME = 'django-excercise-onlineshop-static'
+AWS_S3_CUSTOM_DOMAIN = f's3.{AWS_REGION}.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl' : 'max-age=86400'
+}
+AWS_DEFAULT_ACL = 'public-read'
+AWS_LOCATION = ''
+
+STATIC_URL = f'http://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
