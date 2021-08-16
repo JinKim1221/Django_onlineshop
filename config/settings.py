@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     # google oauth reference 
     # https://dev.to/mdrhmn/django-google-authentication-using-django-allauth-18f8
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +170,5 @@ STATIC_URL = f'http://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 DEFAULT_FILE_STORAGE = 'config.s3media.MediaStorage'
+
+CART_ID = 'cart_item'
