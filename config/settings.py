@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # google oauth reference 
     # https://dev.to/mdrhmn/django-google-authentication-using-django-allauth-18f8
     'cart',
+    'coupon',
 ]
 
 MIDDLEWARE = [
