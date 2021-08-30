@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     # https://dev.to/mdrhmn/django-google-authentication-using-django-allauth-18f8
     'cart',
     'coupon',
+    'order',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -173,3 +175,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'config.s3media.MediaStorage'
 
 CART_ID = 'cart_item'
+
+IAMPORT_KEY = '--'
+IAMPORT_SECRET = '--'
