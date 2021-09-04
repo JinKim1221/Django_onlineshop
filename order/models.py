@@ -20,3 +20,14 @@ class Order(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+    
+    def __str__(self):
+        return f'Order {self.id}'
+
+    def get_total_product(self):
+        return sum(item.get_item_price() for item in self.items.all())
+
+    def get_total_price(self):
+        total_product = self.get_total_product()
+        return total_product - self.discount
