@@ -76,8 +76,14 @@ class OrderTransactionManager(models.Manager):
         except Exception as e:
             print("Error in Save", e)
 
-        
         return transaction.merchant_order_id
+    
+    def get_transaction(self, merchant_order_id):
+        result = find_transaction(merchant_order_id)
+        if result['status'] == 'paid':
+            return result
+        else:
+            return None
 
 class OrderTransaction(models.Model):
     pass
