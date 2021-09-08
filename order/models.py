@@ -90,7 +90,7 @@ class OrderTransaction(models.Model):
     merchant_order_id = models.CharField(max_length=100, null=True, blank=True)
     transaction_id = models.CharField(max_length=100, null=True, blank=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    transaction_status = models.CharField(max_length=100, null=True, balnk=True)
+    transaction_status = models.CharField(max_length=100, null=True, blank=True)
     type = models.CharField(max_length=100, blank=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
 
@@ -101,4 +101,18 @@ class OrderTransaction(models.Model):
     
     class Meta:
         ordering = ['-created']
-        
+
+def order_payment_validation(sender, instance, created, *args, **kwargs):
+    if instance.transaction_id:
+        iamport_transaction = OrderTransaction.objects.get_transaction(merchant_order_id=instance.merchant_order_id)
+        merchant_order_id = iamport_transaction['merchant_order_id']
+        imp_id = iamport_transaction['imp_id']
+        amount = iamport_transaction['amount']
+
+        local_transaction = OrderTransaction.objects.filter(merchant_order_id=merchant_order_id, transaction_id = imp_id, amount = amount).exists()
+
+        if not iamport_transaction or not local_transaction :
+            raise ValueError('Transaction failed.')
+            
+from django.db.models.signals import post_save
+post_save.connect(order_payment_validation, sender=OrderTransaction)
