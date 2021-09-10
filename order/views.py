@@ -25,3 +25,10 @@ def order_create(request):
         # get information of customer 
         form = OrderCreateForm()
     return render(request, 'order/create.html', {'cart':cart, 'form':form})
+
+# User should still be able to order products even when javascript is not working
+def order_complete(request):
+    order_id = request.GET.get('order_id')
+    # order = Order.objects.get(id=order_id)
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'order/created.html', {'order':order})
