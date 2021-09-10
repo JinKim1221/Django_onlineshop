@@ -14,7 +14,8 @@ def order_create(request):
             order = form.save()
             if cart.coupon:
                 order.coupon = cart.coupon
-                order.discount = cart.coupon.amount
+                # order.discount = cart.coupon.amount
+                order.discount = cart.get_discount_total()
                 order.save()
             for item in cart:
                 OrderItem.objects.create(order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
