@@ -155,8 +155,8 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
-AWS_ACCESS_KEY_ID = '--'
-AWS_SECRET_ACCESS_KEY = '--'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 
 AWS_REGION = 'eu-west-1'
 AWS_STORAGE_BUCKET_NAME = 'django-excercise-onlineshop-static'
@@ -176,5 +176,5 @@ DEFAULT_FILE_STORAGE = 'config.s3media.MediaStorage'
 
 CART_ID = 'cart_item'
 
-IAMPORT_KEY = '--'
-IAMPORT_SECRET = '--'
+IAMPORT_KEY = ''
+IAMPORT_SECRET = ''
