@@ -35,3 +35,30 @@ $(function(){
         return false;
     });
 });
+
+
+function AjaxCreateOrder(e){
+    e.preventDefault();
+    var order_id = '';
+    var request = $.ajax({
+        method:'POST',
+        url:order_create_url,
+        async:false,
+        data:$('.order-form').serialize()
+    });
+    request.done(function(data){
+        if(data.ordeR_id){
+            order_id = data.order_id;
+        }
+    });
+    request.fail(function(jqXHR, textStatus){
+        if(jqXHR.status == 404){
+            alert("Page not found.");
+        } else if(jqXHR.status==403){
+            alert("Please Sign in.")
+        } else{
+            alert("Something went wrong. \n Try again")
+        }
+    });
+    return order_id;
+}
