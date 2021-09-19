@@ -62,3 +62,36 @@ function AjaxCreateOrder(e){
     });
     return order_id;
 }
+
+function AjaxStoreTransaction(e, order_id, amount, type){
+    e.preventDefault()
+    var merchant_id = '';
+    var request = $.ajax({
+        method:'POST',
+        url:order_checkout_url,
+        async:false,
+        data:{
+            order_id:order_id,
+            amount:amount,
+            type:type,
+            csrfmiddlewearetoken:csrf_token
+        }
+    });
+    request.done(function(data){
+        if(data.works){
+            merchant_id = data.merchant_id;
+        }
+    });
+
+    request.fail(function(jqXHR, textStatus){
+        if(jqXHR.status == 404){
+            alert("Page not found.");
+        } else if(jqXHR.status==403){
+            alert("Please Sign in.")
+        } else{
+            alert("Something went wrong. \n Try again")
+        }
+    });
+    return merchant_id;
+
+}
