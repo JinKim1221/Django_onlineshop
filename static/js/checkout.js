@@ -74,7 +74,7 @@ function AjaxStoreTransaction(e, order_id, amount, type){
             order_id:order_id,
             amount:amount,
             type:type,
-            csrfmiddlewearetoken:csrf_token
+            csrfmiddlewaretoken:csrf_token
         }
     });
     request.done(function(data){
@@ -93,5 +93,35 @@ function AjaxStoreTransaction(e, order_id, amount, type){
         }
     });
     return merchant_id;
+}
 
+function ImpTransaction(e, order_id, merchant_id, imp_id, amount){
+    e.preventDefault()
+    var request = $.ajax({
+        method:"POST",
+        url:order_validation_url,
+        async:false,
+        data:{
+            order_id:order_id,
+            merchant_id:merchant_id,
+            imp_id:imp_id,
+            amount:amount,
+            csrfmiddlewaretoken:csrf_token
+        }
+    });
+    request.done(function(){
+        if(data.works){
+            $(location).attr('href', location.origin+order_complete_url+'?order_id='+order_id)
+        }
+    });
+    request.fail(function(jqXHR, textStatus){
+        if(jqXHR.status == 404){
+            alert("Page not found.");
+        } else if(jqXHR.status==403){
+            alert("Please Sign in.")
+        } else{
+            alert("Something went wrong. \n Try again")
+        }
+    });
+    
 }
