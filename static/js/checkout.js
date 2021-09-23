@@ -3,7 +3,7 @@ $(function(){
     IMP.init('imp18325231')
     $('.order-form').on('submit', function(e){
         var amount = parseFloat($('.order-form input[name="amount"]').val().replace(',',''));
-        var type=$('.order-form input[name="type"]:checkout').val();
+        var type=$('.order-form input[name="type"]:checked').val();
         var order_id = AjaxCreateOrder(e);
         if(order_id==False){
             alert('Order Failed. Try again');
@@ -20,7 +20,7 @@ $(function(){
                 buyer_email:$('input[name="email"]').val(),
                 amount:amount
             }, function(req){
-                if(req.success){
+                if(req.success){ 
                     var msg = "Payment Completed";
                     msg += "Order id : " + req.imp_uid;
                     // Message after payment
